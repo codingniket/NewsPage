@@ -5,8 +5,8 @@ const NewsArea = () => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    // let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEWS_API_KEY}`;
-    let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=6a7e78f8e0b7470e92b621d6cb336db8`;
+    let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`;
+
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
