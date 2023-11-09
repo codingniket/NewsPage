@@ -1,17 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import NewsCard from './NewsCard';
+import axios from 'axios';
 
 const NewsArea = () => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    let url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`;
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://newsapi.org/v2/top-headlines?country=in&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`
+        );
+        setArticles(response.data.articles);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
 
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        setArticles(data.articles);
-      });
+    fetchData();
   }, []);
 
   return (
